@@ -2,6 +2,7 @@
 
 CREATE DATABASE practice;
 USE practice;
+DROP TABLE courses;
 
 -- 1. Online Course Catalogue-------
 CREATE TABLE courses (
@@ -11,17 +12,20 @@ course_title VARCHAR(150),
 category VARCHAR(60),
 duration_hours INT,
 fee INT,
+discount_percentage DECIMAL(5,2),
 delivery_mode VARCHAR(20),
-course_status VARCHAR(20),
-created_at VARCHAR(10)
+start_date	DATE,
+class_start_time TIME,
+class_end_time TIME,
+created_at DATETIME
 );
 DESCRIBE courses;
 
-INSERT INTO courses VALUES (101,'CRS-JAVA-101','Java Fundamentals','Programming',40,6000,'classroom','active','2026-11-08'),
-(102,'CRS-SQL-102','MySQL Essentials','Database',20,6000,'online','active','2021-10-18'),
-(103,'CRS-WEB-103','Responsive Web Design','Web Development',46,4500,'offline','active','2026-19-15'),
-(104,'CRS-TST-104','Software Testing Basics','Testing',50,0,'classroom','active','2025-11-18'),
-(105,'CRS-OLD-105','Legacy Systems Overview','Technology',28,5500,'hybrid','ARCHIVED','2026-11-18');
+INSERT INTO courses VALUES (101,'CRS-JAVA-101','Java Fundamentals','Programming',40,6500,10.00,'classroom','2026-12-01','09:00:00','11:00:00','2026-12-01 09:00:00'),
+(102,'CRS-SQL-102','MySQL Essentials','Database',32,4500,5.00,'online','2026-12-05','10:00:00','12:00:00','2026-11-19 09:15:00'),
+(103,'CRS-WEB-103','Web Development','Web Development',60,8500,12.50,'hybrid','2027-01-10','14:00:00','16:00:00','2026-11-19 09:30:00'),
+(104,'CRS-TST-104','Software Testing','Testing',24,3500,00.0,'classroom','2026-12-15','15:00:00','17:00:00','2026-11-19 09:45:00'),
+(105,'CRS-PYT-105','Python Basics','Programming',32,5500,7.50,'classroom','2026-11-18','2027-01-05','09:30:00','11:30:00','2026-11-19 10:00:00');
 
 UPDATE courses SET fee=6500 WHERE course_code='CRS-JAVA-101';
 UPDATE courses SET fee = ROUND(fee * 1.10) WHERE course_status = 'active';
